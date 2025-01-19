@@ -1,0 +1,24 @@
+name: Check for main branch must be latest
+
+on:
+  pull_request:
+    branches:
+      - main
+    types:
+      - opened
+      - synchronize
+
+jobs:
+  check-should-rebase:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.base_ref }}
+
+      - name: Ensure Main is Up-to-Date
+        run: |
+          git fetch origin ${{ github.base_ref }}
+          git diff --quiet ${{ github.base_ref }}..origin/${{ github.base_ref }} || (echo "Main has diverged. Please rebase your branch." && exit 1)
