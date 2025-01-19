@@ -62,42 +62,6 @@ Resources:
               - !Sub "arn:aws:s3:::${StateBucket}"
               - !Sub "arn:aws:s3:::${StateBucket}/*"
 
-  StateBucketPrv:
-    Type: "AWS::S3::Bucket"
-    Properties:
-      BucketName: "xxxxx-terraform-state-prv"
-      VersioningConfiguration:
-        Status: Enabled
-      PublicAccessBlockConfiguration:
-        BlockPublicAcls: true
-        BlockPublicPolicy: true
-        IgnorePublicAcls: true
-        RestrictPublicBuckets: true
-      BucketEncryption:
-        ServerSideEncryptionConfiguration:
-          - ServerSideEncryptionByDefault:
-              SSEAlgorithm: AES256
-
-  StateFileBucketPolicyForPrv:
-    Type: "AWS::S3::BucketPolicy"
-    Properties:
-      Bucket: !Ref StateBucketPrv
-      PolicyDocument:
-        Version: "2012-10-17"
-        Statement:
-          - Sid: "AllowSpecificIAMUser"
-            Effect: "Allow"
-            Principal:
-              AWS: "arn:aws:iam::xxxxxxxxx:user/terraform"
-            Action:
-              - "s3:GetObject"
-              - "s3:PutObject"
-              - "s3:ListBucket"
-              - "s3:DeleteObject"
-            Resource:
-              - !Sub "arn:aws:s3:::${StateBucketPrv}/*"
-              - !Sub "arn:aws:s3:::${StateBucketPrv}"
-
   StateBucketPrd:
     Type: "AWS::S3::Bucket"
     Properties:

@@ -9,12 +9,12 @@ This is a sample example of a Terraform directory.
 brew install terraform
 
 # Clone the repository
-git clone xxx (fix it todo)
+git clone https://github.com/gonkunkun/terraform-template
 
 # The Terraform version is specified in `./.terraform-version`
 
 # Initialize the provider (for the staging environment)
-cd ./xxxxx/workloads
+cd ./terraform-template/workloads
 terraform init -backend-config="envs/stg/backend.hcl"
 ```
 
@@ -50,6 +50,6 @@ Verify once more that there are no issues with the changes.
 
 ### 3. Confirm the Differences and Execute Terraform Apply for Each Environment
 
-Typically, apply changes in the order: `stg -> prv -> prd`.
+Typically, apply changes in the order: `stg -> prd`.
 
 Select "Run Workflow," specify the target environment, and follow the steps to execute the CI manually.

@@ -7,12 +7,11 @@
 #   workflow_dispatch:
 #     inputs:
 #       environment:
-#         description: 'Select the environment (e.g., stg, prv, prd)'
+#         description: 'Select the environment (e.g., stg, prd)'
 #         required: true
 #         type: choice
 #         options:
 #           - stg
-#           - prv
 #           - prd
 #         default: stg
 
@@ -30,7 +29,7 @@
 #       fail-fast: false
 #       matrix:
 #         dir: ["workloads"]
-#         env: [stg, prv, prd]
+#         env: [stg, prd]
 
 #     steps:
 #       - name: Checkout code
