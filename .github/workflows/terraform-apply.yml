@@ -90,6 +90,13 @@
 #         with:
 #           ref: ${{ github.ref_name }}
 
+      # - name: Exit if not on main branch
+      #   run: |
+      #     if [[ "${{ github.ref }}" != "refs/heads/main" ]]; then
+      #       echo "This workflow can only be run on the main branch. Exiting."
+      #       exit 0
+      #     fi
+
 #       - name: Ensure Main is Up-to-Date
 #         run: |
 #           git fetch origin ${{ github.ref_name }}
